@@ -1,0 +1,427 @@
+/* ========== IMPORTS ========== */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+/* ========== CSS VARIABLES ========== */
+:root {
+  --bg-primary: #1e1e2e;
+  --bg-secondary: #181825;
+  --bg-card: #262637;
+  --bg-card-hover: #2e2e42;
+  --text-primary: #cdd6f4;
+  --text-secondary: #a6adc8;
+  --text-muted: #6c7086;
+  --border-color: #45475a;
+  --accent-dotnet: #9b59b6;
+  --accent-htmlcss: #e67e22;
+  --accent-js: #f1c40f;
+  --accent-arduino: #1abc9c;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+  --radius: 8px;
+  --transition: 0.3s ease;
+}
+
+/* ========== RESET & BASE ========== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-mono);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ========== LAYOUT ========== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ========== HEADER ========== */
+.header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.logo .prompt {
+  color: var(--accent-arduino);
+}
+
+.logo .command {
+  color: var(--text-secondary);
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+}
+
+.nav a {
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+/* ========== HERO ========== */
+.hero {
+  padding: 80px 0 60px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.hero h1 .highlight {
+  color: var(--accent-arduino);
+}
+
+.typing-wrapper {
+  display: inline-block;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 12px 24px;
+  margin-bottom: 24px;
+}
+
+.typing-wrapper .prefix {
+  color: var(--accent-arduino);
+}
+
+#typing-text {
+  color: var(--accent-js);
+  border-right: 2px solid var(--accent-js);
+  padding-right: 2px;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ========== DERS KARTLARI GRID ========== */
+.section-title {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-title span {
+  color: var(--text-secondary);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding-bottom: 60px;
+}
+
+/* ========== DERS KARTI ========== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-accent);
+  opacity: 0.7;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  background: var(--bg-card-hover);
+  border-color: var(--card-accent);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 15px color-mix(in srgb, var(--card-accent) 20%, transparent);
+}
+
+.card:hover::before {
+  opacity: 1;
+  height: 4px;
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--card-accent);
+}
+
+.card p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.card .tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.card .tag {
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--card-accent) 15%, transparent);
+  color: var(--card-accent);
+  border: 1px solid color-mix(in srgb, var(--card-accent) 30%, transparent);
+}
+
+.card .card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--card-accent);
+  transition: var(--transition);
+}
+
+.card .card-link:hover {
+  gap: 10px;
+}
+
+/* Card accent colors */
+.card.dotnet { --card-accent: var(--accent-dotnet); }
+.card.htmlcss { --card-accent: var(--accent-htmlcss); }
+.card.javascript { --card-accent: var(--accent-js); }
+.card.arduino { --card-accent: var(--accent-arduino); }
+
+/* ========== FOOTER ========== */
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 24px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.footer span {
+  color: var(--text-secondary);
+}
+
+/* ========== DERS SAYFASI ========== */
+.page-header {
+  padding: 40px 0 24px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  transition: var(--transition);
+}
+
+.back-link:hover {
+  color: var(--text-primary);
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.page-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+/* ========== KONU KARTLARI ========== */
+.topics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding-bottom: 60px;
+}
+
+.topic-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--page-accent, var(--accent-arduino));
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  transition: var(--transition);
+}
+
+.topic-card:hover {
+  background: var(--bg-card-hover);
+  border-left-color: var(--page-accent, var(--accent-arduino));
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.topic-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--page-accent, var(--text-primary));
+}
+
+.topic-card .topic-number {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+
+.topic-card p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 50px 0 40px;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 12px 20px;
+    gap: 4px;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 10px 14px;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .typing-wrapper {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  .page-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.3rem;
+  }
+
+  .card {
+    padding: 20px 18px;
+  }
+}
